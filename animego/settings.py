@@ -25,7 +25,7 @@ SECRET_KEY = '7c+*r^y=j!%^4-xxyea+0r6pfza7e9tgnpox(g89pk_(f)mqf&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'animego.pythonanywhere.com']
+ALLOWED_HOSTS = ['animego.pythonanywhere.com']
 
 
 # Application definition
