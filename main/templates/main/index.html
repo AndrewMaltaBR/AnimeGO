@@ -1,13 +1,47 @@
-<!DOCTYPE html>
+{% load staticfiles %}
 <html>
-    <head>
-    	<meta charset="utf-8"/>
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    	<link rel="icon" type="image/png" href="icon.png" />
-        <title>AnimeGO!</title>
-    </head>
-    <body>
-        <h1>Hi there!</h1>
-        <p>It works!</p>
-    </body>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/png" href="{% static 'img/icon.png' %}" />
+		<title>AnimeGO!</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.22/css/uikit.min.css" />
+		<link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+	</head>
+	<body>
+		<div class="uk-position-relative">
+	    <div class="uk-position-top">
+        <nav class="uk-navbar-container" uk-navbar>
+							<div class="uk-navbar-left">
+									<ul class="uk-navbar-nav">
+											<li class="uk-active"><a href="#">Home</a></li>
+											<li><a href="#">Notícias</a></li>
+											<li><a href="#">Cronograma</a></li>
+											<li><a href="#">Estandes</a></li>
+											<li><a href="#">Galeria</a></li>
+									</ul>
+							</div>
+					</nav>
+			</div>
+		</nav>
+
+		<div class="uk-background-contain uk-background-muted uk-height-medium uk-panel uk-flex-center uk-flex-middle" style="background-image: url({% static 'img/megumin.png' %}); background-size: cover; background-position: center; height: 100%; padding: 200px 50px">
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body" style="max-width: 30%;">
+        <h3 class="uk-card-title">Default</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </div>
+		</div>
+		<div class="uk-container uk-container-large">
+			{% for noticia in noticias %}
+				<div>
+					<h1><a href="">{{ noticia.titulo }}</a></h1>
+					<p>Publicado em: {{ noticia.data_publicacao }}</p>
+					<p>{{ noticia.texto|linebreaksbr }}</p>
+				</div>
+			{% endfor %}
+		</div>
+			
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.22/js/uikit.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.22/js/uikit-icons.min.js"></script>
+	</body>
 </html>
