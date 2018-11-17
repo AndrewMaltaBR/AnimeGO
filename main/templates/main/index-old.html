@@ -1,0 +1,421 @@
+{% load staticfiles %}
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="icon" type="image/png" href="{% static 'assets/img/icon.png' %}" />
+
+		<title>AnimeGO!</title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}" >
+		<!-- Icon -->
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/fonts/line-icons.css' %}">
+		<!-- Slicknav -->
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/slicknav.css' %}">
+		<!-- Nivo Lightbox -->
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/nivo-lightbox.css' %}">
+		<!-- Animate -->
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/animate.css' %}">
+		<!-- Main Style -->
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/main.css' %}">
+		<!-- Responsive Style -->
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/responsive.css' %}">
+	</head>
+	<body>
+
+		<!-- Header Area wrapper Starts -->
+		<header id="header-wrap">
+			<!-- Navbar Start -->
+			<nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+							<span class="icon-menu"></span>
+							<span class="icon-menu"></span>
+							<span class="icon-menu"></span>
+						</button>
+						<a href="#" class="navbar-brand"><img src="{% static 'assets/img/icon.png' %}" alt="" style="max-width: 60px"></a>
+					</div>
+					<div class="collapse navbar-collapse" id="main-navbar">
+						<ul class="navbar-nav mr-auto w-100 justify-content-end">
+							<li class="nav-item active">
+								<a class="nav-link" href="#header-wrap">
+									Home
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#sobre">
+									Sobre
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#cronograma">
+									Cronograma
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#estandes">
+									Estandes
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#noticias">
+									Notícias
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#galeria">
+									Galeria
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#faq">
+									FAQ
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#patrocinio">
+									Patrocínio
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#inscricao">
+									Inscrição
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#contato">
+									Contato
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Mobile Menu Start -->
+				<ul class="mobile-menu">
+					<li>
+						<a class="page-scrool" href="#header-wrap">Home</a>
+					</li>
+					<li>
+						<a class="page-scrool" href="#sobre">Sobre</a>
+					</li>
+					<li>
+						<a class="page-scrool" href="#cronograma">Cronograma</a>
+					</li>
+					<li>
+						<a class="page-scrool" href="#estandes">Estandes</a>
+					</li>
+					<li>
+						<a class="page-scrool" href="#noticias">Notícia</a>
+					</li>
+					<li>
+						<a class="page-scrool" href="#galeria">Galeria</a>
+					</li>
+					<li>
+						<a class="page-scrool" href="#faq">FAQ</a>
+					</li>
+					<li>
+						<a class="page-scrool" href="#patrocinio">Patrocínio</a>
+					</li>
+					<li>
+						<a class="page-scrool" href="#inscricao">Inscrição</a>
+					</li>
+					<li>
+						<a class="page-scrool" href="#contato">Contato</a>
+					</li>
+				</ul>
+				<!-- Mobile Menu End -->
+
+			</nav>
+			<!-- Navbar End -->
+
+			<!-- Main Carousel Section Start -->
+			<div id="main-slide" class="carousel slide" data-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img class="d-block w-100" src="{% static 'assets/img/background/goku_and_bulma.jpg' %}" alt="First slide">
+						<div class="carousel-caption d-md-block" style="text-shadow: 2px 2px 8px #000000;">
+							<p class="fadeInUp wow" data-wow-delay=".6s">O primeiro evento de cultura pop do oeste de Santa Catarina!</p>
+							<h1 class="wow fadeInDown heading" data-wow-delay=".4s">AnimeGO!</h1>
+							<a href="#inscricao" class="fadeInLeft wow btn btn-common btn-lg" data-wow-delay=".6s">Realizar inscrição</a>
+							<a href="#sobre" class="fadeInRight wow btn btn-border btn-lg" data-wow-delay=".6s">Descubra mais!</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Main Carousel Section End -->
+		</header> <!-- Header Area wrapper End -->
+
+		<!-- Services Section Start -->
+		<section id="sobre" class="services section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="section-title-header text-center">
+							<h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">Sobre o evento</h1>
+							<p class="wow fadeInDown" data-wow-delay="0.2s">Cultura pop, geek e gamer!</p>
+						</div>
+					</div>
+				</div>
+				<div class="row services-wrapper">
+					<!-- Services item -->
+					<div class="col-md-6 col-lg-4 col-xs-12 padding-none">
+						<div class="services-item wow fadeInDown" data-wow-delay="0.2s">
+							<div class="icon">
+								<i class="lni-music"></i>
+							</div>
+							<div class="services-content">
+								<h5>Atrações</h5>
+								<p>Música, desenho, esporte e muitas outras diversas atrações.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Services item -->
+					<div class="col-md-6 col-lg-4 col-xs-12 padding-none">
+						<div class="services-item wow fadeInDown" data-wow-delay="0.4s">
+							<div class="icon">
+								<i class="lni-game"></i>
+							</div>
+							<div class="services-content">
+								<h5>Games</h5>
+								<p>Participe de jogatinas e torneios de jogos digitais e de tabuleiro com seus amigos e conheça novos jogadores.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Services item -->
+					<div class="col-md-6 col-lg-4 col-xs-12 padding-none">
+						<div class="services-item wow fadeInDown" data-wow-delay="0.6s">
+							<div class="icon">
+								<i class="lni-film-play"></i>
+							</div>
+							<div class="services-content">
+								<h5>Maratonas</h5>
+								<p>Exibição de diferentes animes, séries e filmes completos em várias salas.</p>
+							</div>
+						</div>
+					</div>
+					<!-- Services item -->
+					<div class="col-md-6 col-lg-4 col-xs-12 padding-none">
+						<div class="services-item wow fadeInDown" data-wow-delay="0.8s">
+							<div class="icon">
+								<i class="lni-tshirt"></i>
+							</div>
+							<div class="services-content">
+								<h5>Cosplay</h5>
+								<p>Faça seu cosplay, participe do torneio de cosplays e receba prêmios.</p>
+							</div>
+						</div>
+					</div>
+					 <!-- Services item -->
+					<div class="col-md-6 col-lg-4 col-xs-12 padding-none">
+						<div class="services-item wow fadeInDown" data-wow-delay="1s">
+							<div class="icon">
+								<i class="lni-graduation"></i>
+							</div>
+							<div class="services-content">
+								<h5>Workshops e minicursos</h5>
+								<p>Participe de workshops e minicursos de língua japonesa, culinária e muitos outros.</p>
+							</div>
+						</div>
+					</div>
+					 <!-- Services item -->
+					<div class="col-md-6 col-lg-4 col-xs-12 padding-none">
+						<div class="services-item wow fadeInDown" data-wow-delay="1.2s">
+							<div class="icon">
+								<i class="lni-cart"></i>
+							</div>
+							<div class="services-content">
+								<h5>Estandes</h5>
+								<p>Visite estandes e compre itens exclusivos sobre suas séries, filmes e animações preferidas.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Services Section End -->
+
+		<!-- Coundown Section Start -->
+		<section class="countdown-timer section-padding" style="background: #FFFFD0; position: relative;">
+			<img class="img-left" src="{% static 'assets/img/chibi/aqua.png' %}">
+			<img class="img-right" src="{% static 'assets/img/chibi/taiga.png' %}">
+			<div class="container">
+				<div class="row text-center">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="heading-count">
+							<h2 class="wow fadeInDown" data-wow-delay="0.2s">Dias 12 e 13 de Agosto de 2019</h2>
+						</div>
+					</div>
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="row time-countdown justify-content-center wow fadeInUp" data-wow-delay="0.2s">
+							<div id="clock" class="time-count"></div>
+						</div>
+						<a href="pricing.html" class="btn btn-common wow fadeInUp" data-wow-delay="0.3s">Realizar inscrição</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Coundown Section End -->
+
+		<!-- Schedule Section Start -->
+    <section id="cronograma" class="schedule section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title-header text-center">
+              <h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">Cronograma</h1>
+              <p class="wow fadeInDown" data-wow-delay="0.2s">Fique ligado, não perca nada!</p>
+            </div>
+          </div>
+        </div>
+        <div class="schedule-area row wow fadeInDown" data-wow-delay="0.3s">
+          <div class="schedule-tab-title col-md-3 col-lg-3 col-xs-12">
+            <div class="table-responsive">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                {% for data in datas %}
+                	<li class="nav-item">
+	                  <a class="nav-link" id="monday-tab" data-toggle="tab" href="#{{ data }}" role="tab" aria-controls="{{ data }}" aria-expanded="true">
+	                    <div class="item-text">
+	                      <h4>{{ data.date }}</h4>
+	                    </div>
+	                  </a>
+	                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="schedule-tab-content col-md-9 col-lg-9 col-xs-12 clearfix">
+            <div class="tab-content" id="myTabContent">
+            	{% for atracoes in array_atracoes %}
+              <div class="tab-pane fade show active" id="{{ data }}" role="tabpanel" aria-labelledby="{{ data }}-tab">
+                <div id="accordion">
+                	{% for atracao in atracoes %}
+                  <div class="card">
+                    <div id="headingThree">
+                      <div class="collapsed card-header" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <div class="images-box">
+                        	{% if atracao.imagem %}
+                          <img class="img-fluid" src="{{ atracao.image.url }}" alt="">
+                        	{% endif %}
+                        </div>                     
+                        <span class="time">{{ atracao.data_inicio.time }} - {{ atracao.data_fim.time }}</span>
+                        <h4>{{ atracao.titulo }}</h4>
+                        <h5 class="name">dsads</h5>
+                      </div>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                      <div class="card-body">
+                        <p>{{ atracao.descricao }}</p>
+                        <div class="location">
+                          <span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Schedule Section End -->	
+
+		<!-- Noticias Section Start -->
+		<section id="noticias" class="section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="section-title-header text-center">
+							<h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">Últimas notícias</h1>
+							<p class="wow fadeInDown" data-wow-delay="0.2s">Fique por dentro de tudo!</p>
+						</div>
+					</div>
+				</div>
+				{% for noticias in array_noticias %}
+					<div class="row">
+					{% for noticia in noticias %}
+						<div class="col-lg-4 col-md-6 col-xs-12">
+							<div class="blog-item">
+								<div class="blog-image">
+									<a href="#">
+										{% if noticia.imagem %}
+										<img class="img-fluid" src="{{ noticia.imagem.url }}" alt="">
+										{% endif %}
+									</a>
+								</div>
+								<div class="descr">
+									<h3 class="title">
+										<a href="#">{{ noticia.titulo }}</a>
+									</h3>
+									<div class="meta-tags">
+										<span class="date">{{ noticia.data_publicacao }}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+					</div>
+				{% endfor %}
+			</div>
+		</section>
+		<!-- About Section End -->
+
+		<div id="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="site-info">
+							<p>© AnimeGO! 2018 todos os direitos reservados.<br />Webdesign por <a href="http://uideck.com" rel="nofollow">UIdeck</a></p>
+						</div>      
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Go to Top Link -->
+		<a href="#" class="back-to-top">
+			<i class="lni-chevron-up"></i>
+		</a>
+
+		<div id="preloader">
+			<div class="sk-circle">
+				<div class="sk-circle1 sk-child"></div>
+				<div class="sk-circle2 sk-child"></div>
+				<div class="sk-circle3 sk-child"></div>
+				<div class="sk-circle4 sk-child"></div>
+				<div class="sk-circle5 sk-child"></div>
+				<div class="sk-circle6 sk-child"></div>
+				<div class="sk-circle7 sk-child"></div>
+				<div class="sk-circle8 sk-child"></div>
+				<div class="sk-circle9 sk-child"></div>
+				<div class="sk-circle10 sk-child"></div>
+				<div class="sk-circle11 sk-child"></div>
+				<div class="sk-circle12 sk-child"></div>
+			</div>
+		</div>
+
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="{% static 'assets/js/jquery-min.js' %}"></script>
+		<script src="{% static 'assets/js/popper.min.js' %}"></script>
+		<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'assets/js/jquery.countdown.min.js' %}"></script>
+		<script src="{% static 'assets/js/jquery.nav.js' %}"></script>
+		<script src="{% static 'assets/js/jquery.easing.min.js' %}"></script>
+		<script src="{% static 'assets/js/wow.js' %}"></script>
+		<script src="{% static 'assets/js/jquery.slicknav.js' %}"></script>
+		<script src="{% static 'assets/js/nivo-lightbox.js' %}"></script>
+		<script src="{% static 'assets/js/main.js' %}"></script>
+		<script src="{% static 'assets/js/form-validator.min.js' %}"></script>
+		<script src="{% static 'assets/js/contact-form-script.min.js' %}"></script>
+		<script src="{% static 'assets/js/map.js' %}"></script>
+		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyCsa2Mi2HqyEcEnM1urFSIGEpvualYjwwM"></script>
+			
+	</body>
+</html>
