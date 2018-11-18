@@ -3,26 +3,26 @@
 <html lang="en">
 	<head>
 		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
 		<title>AnimeGO!</title>
 		<link rel="icon" type="image/png" href="{% static 'assets/img/icon.png' %}" />
 
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}" >
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}" />
 		<!-- Icon -->
-		<link rel="stylesheet" type="text/css" href="{% static 'assets/fonts/line-icons.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/fonts/line-icons.css' %}" />
 		<!-- Slicknav -->
-		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/slicknav.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/slicknav.css' %}" />
 		<!-- Nivo Lightbox -->
-		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/nivo-lightbox.css' %}" >
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/nivo-lightbox.css' %}" />
 		<!-- Animate -->
-		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/animate.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/animate.css' %}" />
 		<!-- Main Style -->
-		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/main.css' %}" />
 		<!-- Responsive Style -->
-		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/responsive.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/responsive.css' %}" />
 
 	</head>
 	<body>
@@ -152,7 +152,8 @@
 		</header> <!-- Header Area wrapper End -->
 
 		<!-- Services Section Start -->
-		<section id="sobre" class="services section-padding">
+		<section id="sobre" class="services section-padding" style="position: relative;">
+			<!-- <img class="img-left" src="{% static 'assets/img/chibi/rod.png' %}"> -->
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
@@ -171,7 +172,7 @@
 							</div>
 							<div class="services-content">
 								<h5>Atrações</h5>
-								<p>Música, desenho, esporte e muitas outras diversas atrações.</p>
+								<p>Música, desenho, esporte e muitas outras diversas atrações</p>
 							</div>
 						</div>
 					</div>
@@ -183,7 +184,7 @@
 							</div>
 							<div class="services-content">
 								<h5>Games</h5>
-								<p>Participe de jogatinas e torneios de jogos digitais e de tabuleiro com seus amigos e conheça novos jogadores.</p>
+								<p>Participe de jogatinas e torneios de jogos digitais e de tabuleiro com seus amigos</p>
 							</div>
 						</div>
 					</div>
@@ -195,7 +196,7 @@
 							</div>
 							<div class="services-content">
 								<h5>Maratonas</h5>
-								<p>Exibição de diferentes animes, séries e filmes completos em várias salas.</p>
+								<p>Exibição de diferentes animes, séries e filmes completos em várias salas</p>
 							</div>
 						</div>
 					</div>
@@ -207,7 +208,7 @@
 							</div>
 							<div class="services-content">
 								<h5>Cosplay</h5>
-								<p>Faça seu cosplay, participe do torneio de cosplays e receba prêmios.</p>
+								<p>Seja um cosplayer, participe do torneio e concorra a muitos prêmios</p>
 							</div>
 						</div>
 					</div>
@@ -219,7 +220,7 @@
 							</div>
 							<div class="services-content">
 								<h5>Workshops e minicursos</h5>
-								<p>Participe de workshops e minicursos de língua japonesa, culinária e muitos outros.</p>
+								<p>Participe de workshops e minicursos de língua japonesa, culinária e muitos outros</p>
 							</div>
 						</div>
 					</div>
@@ -231,7 +232,7 @@
 							</div>
 							<div class="services-content">
 								<h5>Estandes</h5>
-								<p>Visite estandes e compre itens exclusivos sobre suas séries, filmes e animações preferidas.</p>
+								<p>Visite estandes e compre itens exclusivos sobre suas séries, filmes e animações preferidas</p>
 							</div>
 						</div>
 					</div>
@@ -241,19 +242,29 @@
 		<!-- Services Section End -->
 
 		<!-- Coundown Section Start -->
-		<section class="countdown-timer section-padding" style="background: #FFFFD0; position: relative;">
-			<img class="img-left" src="{% static 'assets/img/chibi/aqua.png' %}">
-			<img class="img-right" src="{% static 'assets/img/chibi/taiga.png' %}">
+		<section class="countdown-timer section-padding" style="background-color: #d6e4ff; background-image: url({% static 'assets/img/background/sailor-d6e4ff.png' %})">
 			<div class="container">
 				<div class="row text-center">
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="heading-count">
-							<h2 class="wow fadeInDown" data-wow-delay="0.2s">Dias 12 e 13 de Agosto de 2019</h2>
+							<h2 class="wow fadeInDown" data-wow-delay="0.2s">
+							{% for data in datas %}
+								{% with datas|last as last %}
+									{% if data == last %}
+										e {{ data.date }}
+									{% elif data == datas.0 %}
+										{{ data.day }}
+									{% else %}
+										, {{ data.day }}
+									{% endif %}
+								{% endwith %}
+							{% endfor %}
+							</h2>
 						</div>
 					</div>
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="row time-countdown justify-content-center wow fadeInUp" data-wow-delay="0.2s">
-							<div id="clock" class="time-count"></div>
+							<div id="clock" class="time-count" date="{{ datas.0.year }}/{{ datas.0.month }}/{{ datas.0.day }}"></div>
 						</div>
 						<a href="pricing.html" class="btn btn-common wow fadeInUp" data-wow-delay="0.3s">Realizar inscrição</a>
 					</div>
@@ -268,352 +279,66 @@
 				<div class="row">
 					<div class="col-12">
 						<div class="section-title-header text-center">
-							<h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">Event Schedules</h1>
-							<p class="wow fadeInDown" data-wow-delay="0.2s">Lorem ipsum dolor sit amet, consectetur adipiscing <br> elit, sed do eiusmod tempor</p>
+							<h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">Cronograma</h1>
+							<p class="wow fadeInDown" data-wow-delay="0.2s">Fique ligado para não perder nada!</p>
 						</div>
 					</div>
 				</div>
+				<img class="img-right over-top wow fadeInDown" data-wow-delay="0.3s" src="{% static 'assets/img/chibi/mercy.png' %}" />
 				<div class="schedule-area row wow fadeInDown" data-wow-delay="0.3s">
 					<div class="schedule-tab-title col-md-3 col-lg-3 col-xs-12">
 						<div class="table-responsive">
 							<ul class="nav nav-tabs" id="myTab" role="tablist">
+							{% for data in datas %}
 								<li class="nav-item">
-									<a class="nav-link active" id="monday-tab" data-toggle="tab" href="#monday" role="tab" aria-controls="monday" aria-expanded="true">
+									<a class="nav-link
+									{% if data == datas.0 %} active {% endif %}" id="{{ data.year }}{{ data.month }}{{ data.day }}-tab" data-toggle="tab" href="#{{ data.year }}{{ data.month }}{{ data.day }}" role="{{ data.year }}{{ data.month }}{{ data.day }}" aria-controls="{{ data.year }}{{ data.month }}{{ data.day }}" aria-expanded="true">
 										<div class="item-text">
-											<h4>Monday</h4>
-											<h5>14 February</h5>
+											<h4>{{ data | date:"l" }}</h4>
+											<h5>{{ data.date }}</h5>
 										</div>
 									</a>
 								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="tuesday-tab" data-toggle="tab" href="#tuesday" role="tab" aria-controls="tuesday">
-										<div class="item-text">
-											<h4>Tuesday</h4>
-											<h5>15 February</h5>
-										</div>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="wednesday-tab" data-toggle="tab" href="#wednesday" role="tab" aria-controls="wednesday">
-										<div class="item-text">
-											<h4>Wednesday</h4>
-											<h5>16 February</h5>
-										</div>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="thursday-tab" data-toggle="tab" href="#thursday" role="tab" aria-controls="thursday">
-										<div class="item-text">
-											<h4>Thursday</h4>
-											<h5>17 February</h5>
-										</div>
-									</a>
-								</li>
+							{% endfor %}
 							</ul>
 						</div>
 					</div>
 					<div class="schedule-tab-content col-md-9 col-lg-9 col-xs-12 clearfix">
-						<div class="tab-content" id="myTabContent">
-							<div class="tab-pane fade show active" id="monday" role="tabpanel" aria-labelledby="monday-tab">
-								<div id="accordion">
-									<div class="card">
-										<div id="headingOne">
-											<div class="collapsed card-header" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-												<div class="images-box">
-													<img class="img-fluid" src="assets/img/speaker/speakers-1.jpg" alt="">
-												</div>                     
-												<span class="time">10am - 12:30pm</span>
-												<h4>Web Design Principles and Best Practices</h4>
-												<h5 class="name">David Warner</h5>
+ 						<div class="tab-content" id="myTabContent">
+							{% for atracoes in array_atracoes %}
+								<div class="tab-pane fade show {% if atracoes.0.id == array_atracoes.0.0.id %} active {% endif %}" id="{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}" role="tabpanel" aria-labelledby="{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}-tab">
+									<div id="accordion{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}">
+									{% for atracao in atracoes %}
+										<div class="card">
+											<div id="heading{{ atracao.id }}">
+												<div class="collapsed card-header" data-toggle="collapse" data-target="#collapse{{ atracao.id }}" aria-expanded="false" aria-controls="#collapse{{ atracao.id }}">
+													<div class="images-box">
+													{% if atracao.imagem %}	
+														<img class="img-fluid" src="{{ atracao.imagem.url }}" alt="">
+													{% endif %}
+													</div>                     
+													<span class="time">{{ atracao.data_inicio.time }} - {{ atracao.data_fim.time }}</span>
+													<h4>{{ atracao.titulo }}</h4>
+													{% if atracao.nome_responsavel %}
+													<h5 class="name">{{ atracao.nome_responsavel }}</h5>
+													{% endif %}
+												</div>
 											</div>
-										</div>
-										<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-											<div class="card-body">
-												<p>Consectetur adipisicing elit. Quod distinctio impedit sint accusantium ducimus lites consequuntur innobisl dolores saepe.Proin sit amet turpis lobortis.</p>
-												<div class="location">
-													<span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
+											<div id="#collapse{{ atracao.id }}" class="collapse {% if atracao == atracoes.0 %} show {% endif %}" aria-labelledby="#heading{{ atracao.id }}" data-parent="#accordion{{ atracao.data_inicio.year }}{{ atracao.data_inicio.month }}{{ atracao.data_inicio.day }}">
+												<div class="card-body">
+													<p>{{ atracao.descricao }}</p>
+													<div class="location">
+														{% if atracao.local %}	
+														<span>Local:</span> {{ atracao.local }}
+														{% endif %}
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="card">
-										<div id="headingTwo">
-											<div class="collapsed card-header" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-												<div class="images-box">
-													<img class="img-fluid" src="assets/img/speaker/speakers-2.jpg" alt="">
-												</div>                     
-												<span class="time">10am - 12:30pm</span>
-												<h4>15 Free Productive Design Tools</h4>
-												<h5 class="name">David Warner</h5>
-											</div>
-										</div>
-										<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-											<div class="card-body">
-												<p>Consectetur adipisicing elit. Quod distinctio impedit sint accusantium ducimus lites consequuntur innobisl dolores saepe.Proin sit amet turpis lobortis.</p>
-												<div class="location">
-													<span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="card">
-										<div id="headingThree">
-											<div class="collapsed card-header" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-												<div class="images-box">
-													<img class="img-fluid" src="assets/img/speaker/speakers-3.jpg" alt="">
-												</div>                     
-												<span class="time">10am - 12:30pm</span>
-												<h4>Getting Started With SketchApp</h4>
-												<h5 class="name">David Warner</h5>
-											</div>
-										</div>
-										<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-											<div class="card-body">
-												<p>Consectetur adipisicing elit. Quod distinctio impedit sint accusantium ducimus lites consequuntur innobisl dolores saepe.Proin sit amet turpis lobortis.</p>
-												<div class="location">
-													<span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
-												</div>
-											</div>
-										</div>
+									{% endfor %}
 									</div>
 								</div>
-							</div>
-							<div class="tab-pane fade" id="tuesday" role="tabpanel" aria-labelledby="tuesday-tab">
-								<div id="accordion2">
-									<div class="card">
-										<div id="headingOne1">
-											<div class="collapsed card-header" data-toggle="collapse" data-target="#collapseOne1" aria-expanded="false" aria-controls="collapseOne1">
-												<div class="images-box">
-													<img class="img-fluid" src="assets/img/speaker/speakers-1.jpg" alt="">
-												</div>                     
-												<span class="time">10am - 12:30pm</span>
-												<h4>Web Design Principles and Best Practices</h4>
-												<h5 class="name">David Warner</h5>
-											</div>
-										</div>
-										<div id="collapseOne1" class="collapse show" aria-labelledby="headingOne1" data-parent="#accordion2">
-											<div class="card-body">
-												<p>Consectetur adipisicing elit. Quod distinctio impedit sint accusantium ducimus lites consequuntur innobisl dolores saepe.Proin sit amet turpis lobortis.</p>
-												<div class="location">
-													<span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="card">
-										<div id="headingTwo2">
-											<div class="collapsed card-header" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
-												<div class="images-box">
-													<img class="img-fluid" src="assets/img/speaker/speakers-2.jpg" alt="">
-												</div>                     
-												<span class="time">10am - 12:30pm</span>
-												<h4>Web Design Principles and Best Practices</h4>
-												<h5 class="name">David Warner</h5>
-											</div>
-										</div>
-										<div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2" data-parent="#accordion2">
-											<div class="card-body">
-												<p>Consectetur adipisicing elit. Quod distinctio impedit sint accusantium ducimus lites consequuntur innobisl dolores saepe.Proin sit amet turpis lobortis.</p>
-												<div class="location">
-													<span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="wednesday" role="tabpanel" aria-labelledby="wednesday-tab">
-								<div id="accordion3">
-									<div class="card">
-										<div id="headingOne3">
-											<div class="collapsed card-header" data-toggle="collapse" data-target="#collapseOne3" aria-expanded="false" aria-controls="collapseOne3">
-												<div class="images-box">
-													<img class="img-fluid" src="assets/img/speaker/speakers-1.jpg" alt="">
-												</div>                     
-												<span class="time">10am - 12:30pm</span>
-												<h4>Web Design Principles and Best Practices</h4>
-												<h5 class="name">David Warner</h5>
-											</div>
-										</div>
-										<div id="collapseOne3" class="collapse show" aria-labelledby="headingOne3" data-parent="#accordion3">
-											<div class="card-body">
-												<p>Consectetur adipisicing elit. Quod distinctio impedit sint accusantium ducimus lites consequuntur innobisl dolores saepe.Proin sit amet turpis lobortis.</p>
-												<div class="location">
-													<span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="card">
-										<div id="headingTwo3">
-											<div class="collapsed card-header" data-toggle="collapse" data-target="#collapseTwo3" aria-expanded="false" aria-controls="collapseTwo3">
-												<div class="images-box">
-													<img class="img-fluid" src="assets/img/speaker/speakers-2.jpg" alt="">
-												</div>                     
-												<span class="time">10am - 12:30pm</span>
-												<h4>Web Design Principles and Best Practices</h4>
-												<h5 class="name">David Warner</h5>
-											</div>
-										</div>
-										<div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo3" data-parent="#accordion3">
-											<div class="card-body">
-												<p>Consectetur adipisicing elit. Quod distinctio impedit sint accusantium ducimus lites consequuntur innobisl dolores saepe.Proin sit amet turpis lobortis.</p>
-												<div class="location">
-													<span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="card">
-										<div id="headingThree3">
-											<div class="collapsed card-header" data-toggle="collapse" data-target="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3">
-												<div class="images-box">
-													<img class="img-fluid" src="assets/img/speaker/speakers-3.jpg" alt="">
-												</div>                     
-												<span class="time">10am - 12:30pm</span>
-												<h4>Web Design Principles and Best Practices</h4>
-												<h5 class="name">David Warner</h5>
-											</div>
-										</div>
-										<div id="collapseThree3" class="collapse" aria-labelledby="headingThree3" data-parent="#accordion3">
-											<div class="card-body">
-												<p>Consectetur adipisicing elit. Quod distinctio impedit sint accusantium ducimus lites consequuntur innobisl dolores saepe.Proin sit amet turpis lobortis.</p>
-												<div class="location">
-													<span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="thursday" role="tabpanel" aria-labelledby="thursday-tab">
-								<div id="accordion4">
-									<div class="card">
-										<div id="headingOne">
-											<div class="collapsed card-header" data-toggle="collapse" data-target="#collapseOne4" aria-expanded="false" aria-controls="collapseOne4">
-												<div class="images-box">
-													<img class="img-fluid" src="assets/img/speaker/speakers-1.jpg" alt="">
-												</div>                     
-												<span class="time">10am - 12:30pm</span>
-												<h4>Web Design Principles and Best Practices</h4>
-												<h5 class="name">David Warner</h5>
-											</div>
-										</div>
-										<div id="collapseOne4" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion4">
-											<div class="card-body">
-												<p>Consectetur adipisicing elit. Quod distinctio impedit sint accusantium ducimus lites consequuntur innobisl dolores saepe.Proin sit amet turpis lobortis.</p>
-												<div class="location">
-													<span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="card">
-										<div id="headingTwo">
-											<div class="collapsed card-header" data-toggle="collapse" data-target="#collapseTwo4" aria-expanded="false" aria-controls="collapseTwo4">
-												<div class="images-box">
-													<img class="img-fluid" src="assets/img/speaker/speakers-2.jpg" alt="">
-												</div>                     
-												<span class="time">10am - 12:30pm</span>
-												<h4>Web Design Principles and Best Practices</h4>
-												<h5 class="name">David Warner</h5>
-											</div>
-										</div>
-										<div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion4">
-											<div class="card-body">
-												<p>Consectetur adipisicing elit. Quod distinctio impedit sint accusantium ducimus lites consequuntur innobisl dolores saepe.Proin sit amet turpis lobortis.</p>
-												<div class="location">
-													<span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="card">
-										<div id="headingThree4">
-											<div class="collapsed card-header" data-toggle="collapse" data-target="#collapseThree4" aria-expanded="false" aria-controls="collapseThree4">
-												<div class="images-box">
-													<img class="img-fluid" src="assets/img/speaker/speakers-3.jpg" alt="">
-												</div>                     
-												<span class="time">10am - 12:30pm</span>
-												<h4>Web Design Principles and Best Practices</h4>
-												<h5 class="name">David Warner</h5>
-											</div>
-										</div>
-										<div id="collapseThree4" class="collapse" aria-labelledby="headingThree" data-parent="#accordion4">
-											<div class="card-body">
-												<p>Consectetur adipisicing elit. Quod distinctio impedit sint accusantium ducimus lites consequuntur innobisl dolores saepe.Proin sit amet turpis lobortis.</p>
-												<div class="location">
-													<span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="friday" role="tabpanel" aria-labelledby="friday-tab">
-								<div id="accordion">
-									<div class="card">
-										<div id="headingOne">
-											<div class="collapsed card-header" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-												<div class="images-box">
-													<img class="img-fluid" src="assets/img/speaker/speakers-1.jpg" alt="">
-												</div>                     
-												<span class="time">10am - 12:30pm</span>
-												<h4>Web Design Principles and Best Practices</h4>
-												<h5 class="name">David Warner</h5>
-											</div>
-										</div>
-										<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-											<div class="card-body">
-												<p>Consectetur adipisicing elit. Quod distinctio impedit sint accusantium ducimus lites consequuntur innobisl dolores saepe.Proin sit amet turpis lobortis.</p>
-												<div class="location">
-													<span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="card">
-										<div id="headingTwo">
-											<div class="collapsed card-header" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-												<div class="images-box">
-													<img class="img-fluid" src="assets/img/speaker/speakers-2.jpg" alt="">
-												</div>                     
-												<span class="time">10am - 12:30pm</span>
-												<h4>Web Design Principles and Best Practices</h4>
-												<h5 class="name">David Warner</h5>
-											</div>
-										</div>
-										<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-											<div class="card-body">
-												<p>Consectetur adipisicing elit. Quod distinctio impedit sint accusantium ducimus lites consequuntur innobisl dolores saepe.Proin sit amet turpis lobortis.</p>
-												<div class="location">
-													<span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="card">
-										<div id="headingThree">
-											<div class="collapsed card-header" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-												<div class="images-box">
-													<img class="img-fluid" src="assets/img/speaker/speakers-3.jpg" alt="">
-												</div>                     
-												<span class="time">10am - 12:30pm</span>
-												<h4>Web Design Principles and Best Practices</h4>
-												<h5 class="name">David Warner</h5>
-											</div>
-										</div>
-										<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-											<div class="card-body">
-												<p>Consectetur adipisicing elit. Quod distinctio impedit sint accusantium ducimus lites consequuntur innobisl dolores saepe.Proin sit amet turpis lobortis.</p>
-												<div class="location">
-													<span>Location:</span> Hall 1 , Building A, Golden Street, Southafrica
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							{% endfor %}
 						</div>
 					</div>
 				</div>
@@ -661,8 +386,8 @@
 		</section>
 		<!-- About Section End -->
 
-		<!-- Gallery Section Start -->
-		<section id="gallery" class="section-padding">
+		<!-- Galeria Section Start -->
+		<section id="galeria" class="section-padding">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
@@ -877,7 +602,7 @@
 		<!-- Ask Question Section End -->
 
 		<!-- Sponsors Section Start -->
-		<section id="sponsors" class="section-padding">
+		<section id="patrocinio" class="section-padding">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
@@ -917,7 +642,7 @@
 		<!-- Sponsors Section End -->
 
 		<!-- Ticket Pricing Area Start -->
-		<section id="pricing" class="section-padding">
+		<section id="inscricao" class="section-padding">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
@@ -1040,8 +765,8 @@
 		</section>
 		<!-- Map Section End -->
 
-		<!-- Contact Us Section -->
-		<section id="contact-map" class="section-padding">
+		<!-- Contato Us Section -->
+		<section id="contato" class="section-padding">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-12">
@@ -1097,7 +822,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="site-info">
-							<p>© AnimeGO! 2018 todos os direitos reservados.<br />Webdesign por <a href="http://uideck.com" rel="nofollow">UIdeck</a></p>
+							<p>© AnimeGO! 2018 todos os direitos reservados<br />Designed by <a href="http://uideck.com" rel="nofollow">UIdeck</a></p>
 						</div>      
 					</div>
 				</div>

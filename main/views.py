@@ -33,12 +33,12 @@ def index(request):
 			datas.append(atracao.data_inicio)
 
 	# Obtendo atrações
-	array_atracoes = [[]]*len(datas)
-	for atracao in atracoes:
-		for i in range(0, len(datas)):
+	array_atracoes = []
+	for i in range(0, len(datas)):
+		array_atracoes.append([])
+		for atracao in atracoes:
 			if(atracao.data_inicio.day == datas[i].day and atracao.data_inicio.month == datas[i].month and atracao.data_inicio.year == datas[i].year):
 				array_atracoes[i].append(atracao)
 	print(array_atracoes)
 
-
-	return render(request, 'main/index.html', {'array_noticias': array_noticias,'datas': datas, 'atracoes': atracoes})
+	return render(request, 'main/index.html', {'array_noticias': array_noticias,'datas': datas, 'array_atracoes': array_atracoes})
