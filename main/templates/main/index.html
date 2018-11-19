@@ -24,6 +24,23 @@
 		<!-- Responsive Style -->
 		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/responsive.css' %}" />
 
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="{% static 'assets/js/jquery-min.js' %}"></script>
+		<script src="{% static 'assets/js/jquery-ui.js' %}"></script>
+		<script src="{% static 'assets/js/popper.min.js' %}"></script>
+		<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'assets/js/jquery.countdown.min.js' %}"></script>
+		<script src="{% static 'assets/js/jquery.nav.js' %}"></script>
+		<script src="{% static 'assets/js/jquery.easing.min.js' %}"></script>
+		<script src="{% static 'assets/js/wow.js' %}"></script>
+		<script src="{% static 'assets/js/jquery.slicknav.js' %}"></script>
+		<script src="{% static 'assets/js/nivo-lightbox.js' %}"></script>
+		<script src="{% static 'assets/js/main.js' %}"></script>
+		<script src="{% static 'assets/js/form-validator.min.js' %}"></script>
+		<script src="{% static 'assets/js/contact-form-script.min.js' %}"></script>
+		<script src="{% static 'assets/js/map.js' %}"></script>
+		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyCsa2Mi2HqyEcEnM1urFSIGEpvualYjwwM"></script>
+
 	</head>
 	<body>
 
@@ -309,9 +326,9 @@
 								<div class="tab-pane fade show {% if atracoes.0.id == array_atracoes.0.0.id %} active {% endif %}" id="{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}" role="tabpanel" aria-labelledby="{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}-tab">
 									<div id="accordion{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}">
 									{% for atracao in atracoes %}
-										<div class="card">
+										<!--<div class="card">-->
 											<div id="heading{{ atracao.id }}">
-												<div class="collapsed card-header" data-toggle="collapse" data-target="#collapse{{ atracao.id }}" aria-expanded="false" aria-controls="#collapse{{ atracao.id }}">
+												<div class="collapsed card-header">
 													<div class="images-box">
 													{% if atracao.imagem %}	
 														<img class="img-fluid" src="{{ atracao.imagem.url }}" alt="">
@@ -324,7 +341,7 @@
 													{% endif %}
 												</div>
 											</div>
-											<div id="#collapse{{ atracao.id }}" class="collapse {% if atracao == atracoes.0 %} show {% endif %}" aria-labelledby="#heading{{ atracao.id }}" data-parent="#accordion{{ atracao.data_inicio.year }}{{ atracao.data_inicio.month }}{{ atracao.data_inicio.day }}">
+											<div class="collapse {% if atracao == atracoes.0 %} show {% endif %}">
 												<div class="card-body">
 													<p>{{ atracao.descricao }}</p>
 													<div class="location">
@@ -334,9 +351,17 @@
 													</div>
 												</div>
 											</div>
-										</div>
+										<!--</div>-->
 									{% endfor %}
 									</div>
+									<script>
+									  $( function() {
+									    $( "#accordion{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}" ).accordion({
+									    	collapsible: true,
+									    	heightStyle: "content"
+									    });
+									  } );
+									</script>
 								</div>
 							{% endfor %}
 						</div>
@@ -374,7 +399,7 @@
 										<a href="#">{{ noticia.titulo }}</a>
 									</h3>
 									<div class="meta-tags">
-										<span class="date">{{ noticia.data_publicacao }}</span>
+										<span class="date" style="font-size: 12px">{{ noticia.usuario.first_name }}, {{ noticia.data_publicacao.date }}</span>
 									</div>
 								</div>
 							</div>
@@ -850,22 +875,6 @@
 				<div class="sk-circle12 sk-child"></div>
 			</div>
 		</div>
-
-		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="{% static 'assets/js/jquery-min.js' %}"></script>
-		<script src="{% static 'assets/js/popper.min.js' %}"></script>
-		<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
-		<script src="{% static 'assets/js/jquery.countdown.min.js' %}"></script>
-		<script src="{% static 'assets/js/jquery.nav.js' %}"></script>
-		<script src="{% static 'assets/js/jquery.easing.min.js' %}"></script>
-		<script src="{% static 'assets/js/wow.js' %}"></script>
-		<script src="{% static 'assets/js/jquery.slicknav.js' %}"></script>
-		<script src="{% static 'assets/js/nivo-lightbox.js' %}"></script>
-		<script src="{% static 'assets/js/main.js' %}"></script>
-		<script src="{% static 'assets/js/form-validator.min.js' %}"></script>
-		<script src="{% static 'assets/js/contact-form-script.min.js' %}"></script>
-		<script src="{% static 'assets/js/map.js' %}"></script>
-		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyCsa2Mi2HqyEcEnM1urFSIGEpvualYjwwM"></script>
 			
 	</body>
 </html>
