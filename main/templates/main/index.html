@@ -39,7 +39,7 @@
 		<script src="{% static 'assets/js/form-validator.min.js' %}"></script>
 		<script src="{% static 'assets/js/contact-form-script.min.js' %}"></script>
 		<script src="{% static 'assets/js/map.js' %}"></script>
-		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyCsa2Mi2HqyEcEnM1urFSIGEpvualYjwwM"></script>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 	</head>
 	<body>
@@ -92,11 +92,6 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#faq">
-									FAQ
-								</a>
-							</li>
-							<li class="nav-item">
 								<a class="nav-link" href="#patrocinio">
 									Patrocínio
 								</a>
@@ -136,9 +131,6 @@
 						<a class="page-scrool" href="#galeria">Galeria</a>
 					</li>
 					<li>
-						<a class="page-scrool" href="#faq">FAQ</a>
-					</li>
-					<li>
 						<a class="page-scrool" href="#patrocinio">Patrocínio</a>
 					</li>
 					<li>
@@ -156,7 +148,7 @@
 			<div id="main-slide" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img class="d-block w-100" src="{% static 'assets/img/background/goku_and_bulma.jpg' %}" alt="First slide">
+						<img class="d-block w-100" src="{% static 'assets/img/background/goku_and_bulma.jpg' %}">
 						<div class="carousel-caption d-md-block" style="text-shadow: 2px 2px 8px #000000;">
 							<p class="fadeInUp wow" data-wow-delay=".6s">O primeiro evento de cultura pop do oeste de Santa Catarina!</p>
 							<h1 class="wow fadeInDown" data-wow-delay=".4s">AnimeGO!</h1>
@@ -170,7 +162,6 @@
 
 		<!-- Services Section Start -->
 		<section id="sobre" class="services section-padding" style="position: relative;">
-			<!-- <img class="img-left" src="{% static 'assets/img/chibi/rod.png' %}"> -->
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
@@ -265,23 +256,17 @@
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="heading-count">
 							<h2 class="wow fadeInDown" data-wow-delay="0.2s">
-							{% for data in datas %}
-								{% with datas|last as last %}
-									{% if data == last %}
-										e {{ data.date }}
-									{% elif data == datas.0 %}
-										{{ data.day }}
-									{% else %}
-										, {{ data.day }}
-									{% endif %}
-								{% endwith %}
-							{% endfor %}
+							{{ edicao.data_inicio.day }}
+							{% if edicao.data_inicio.month != edicao.data_fim.month %}
+							 de {{ edicao.data_inicio | date:"F" }}
+							{% endif %}
+							 a {{ edicao.data_fim.day }} de {{ edicao.data_fim | date:"F" }} de {{ edicao.data_fim.year }}
 							</h2>
 						</div>
 					</div>
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="row time-countdown justify-content-center wow fadeInUp" data-wow-delay="0.2s">
-							<div id="clock" class="time-count" date="{{ datas.0.year }}/{{ datas.0.month }}/{{ datas.0.day }}"></div>
+							<div id="clock" class="time-count" date="{{ edicao.data_inicio.year }}/{{ edicao.data_inicio.month }}/{{ edicao.data_inicio.day }}"></div>
 						</div>
 						<a href="pricing.html" class="btn btn-common wow fadeInUp" data-wow-delay="0.3s">Realizar inscrição</a>
 					</div>
@@ -306,13 +291,13 @@
 					<div class="schedule-tab-title col-md-3 col-lg-3 col-xs-12">
 						<div class="table-responsive">
 							<ul class="nav nav-tabs" id="myTab" role="tablist">
-							{% for data in datas %}
+							{% for atracoes in array_atracoes %}
 								<li class="nav-item">
 									<a class="nav-link
-									{% if data == datas.0 %} active {% endif %}" id="{{ data.year }}{{ data.month }}{{ data.day }}-tab" data-toggle="tab" href="#{{ data.year }}{{ data.month }}{{ data.day }}" role="{{ data.year }}{{ data.month }}{{ data.day }}" aria-controls="{{ data.year }}{{ data.month }}{{ data.day }}" aria-expanded="true">
+									{% if atracoes.0.data_inicio == array_atracoes.0.0.data_inicio %} active {% endif %}" id="{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}-tab" data-toggle="tab" href="#{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}" role="{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}" aria-controls="{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}" aria-expanded="true">
 										<div class="item-text">
-											<h4>{{ data | date:"l" }}</h4>
-											<h5>{{ data.date }}</h5>
+											<h4>{{ atracoes.0.data_inicio | date:"l" }}</h4>
+											<h5>{{ atracoes.0.data_inicio.date }}</h5>
 										</div>
 									</a>
 								</li>
@@ -321,48 +306,46 @@
 						</div>
 					</div>
 					<div class="schedule-tab-content col-md-9 col-lg-9 col-xs-12 clearfix">
- 						<div class="tab-content" id="myTabContent">
+						<div class="tab-content" id="myTabContent">
 							{% for atracoes in array_atracoes %}
 								<div class="tab-pane fade show {% if atracoes.0.id == array_atracoes.0.0.id %} active {% endif %}" id="{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}" role="tabpanel" aria-labelledby="{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}-tab">
 									<div id="accordion{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}">
 									{% for atracao in atracoes %}
-										<!--<div class="card">-->
-											<div id="heading{{ atracao.id }}">
-												<div class="collapsed card-header">
-													<div class="images-box">
-													{% if atracao.imagem %}	
-														<img class="img-fluid" src="{{ atracao.imagem.url }}" alt="">
-													{% endif %}
-													</div>                     
-													<span class="time">{{ atracao.data_inicio.time }} - {{ atracao.data_fim.time }}</span>
-													<h4>{{ atracao.titulo }}</h4>
-													{% if atracao.nome_responsavel %}
-													<h5 class="name">{{ atracao.nome_responsavel }}</h5>
+										<div id="heading{{ atracao.id }}">
+											<div class="collapsed card-header">
+												<div class="images-box">
+												{% if atracao.imagem %}	
+													<img class="img-fluid" src="{{ atracao.imagem.url}}" alt="">
+												{% endif %}
+												</div>                     
+												<span class="time">{{ atracao.data_inicio.time }} - {{ atracao.data_fim.time }}</span>
+												<h4>{{ atracao.titulo }}</h4>
+												{% if atracao.nome_responsavel %}
+												<h5 class="name">{{ atracao.nome_responsavel }}</h5>
+												{% endif %}
+											</div>
+										</div>
+										<div class="collapse {% if atracao == atracoes.0 %} show {% endif %}">
+											<div class="card-body">
+												<p>{{ atracao.descricao }}</p>
+												<div class="location">
+													{% if atracao.local %}	
+													<span>Local:</span> {{ atracao.local }}
 													{% endif %}
 												</div>
 											</div>
-											<div class="collapse {% if atracao == atracoes.0 %} show {% endif %}">
-												<div class="card-body">
-													<p>{{ atracao.descricao }}</p>
-													<div class="location">
-														{% if atracao.local %}	
-														<span>Local:</span> {{ atracao.local }}
-														{% endif %}
-													</div>
-												</div>
-											</div>
-										<!--</div>-->
+										</div>
 									{% endfor %}
 									</div>
-									<script>
-									  $( function() {
-									    $( "#accordion{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}" ).accordion({
-									    	collapsible: true,
-									    	heightStyle: "content"
-									    });
-									  } );
-									</script>
 								</div>
+								<script>
+								  $(function() {
+									$("#accordion{{ atracoes.0.data_inicio.year }}{{ atracoes.0.data_inicio.month }}{{ atracoes.0.data_inicio.day }}" ).accordion({
+										collapsible: true,
+										heightStyle: "content"
+									});
+								  } );
+								</script>
 							{% endfor %}
 						</div>
 					</div>
@@ -370,6 +353,105 @@
 			</div>
 		</section>
 		<!-- Schedule Section End -->
+
+		<!-- Services Section Start -->
+		<section id="estandes" class="services section-padding" style="position: relative;">
+			<!-- <img class="img-left" src="{% static 'assets/img/chibi/rod.png' %}"> -->
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="section-title-header text-center">
+							<h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">Estandes</h1>
+							<p class="wow fadeInDown" data-wow-delay="0.2s"><!--oi, hey-->Visite os estandes e adquira produtos exclusivo! </p>
+						</div>
+					</div>
+				</div>
+				<div class="row services-wrapper">
+					{% for estande in estandes %}
+					<div class="col-md-6 col-lg-4 col-xs-12 padding-none">
+						<div class="services-item wow fadeInDown" data-wow-delay="0.2s">
+							<div class="icon">
+								{% if estande.imagem %}
+								<img class="img-fluid" src="{{ estande.imagem.url }}" style="max-height: 200px" />
+								{% endif %}
+							</div>
+							<div class="services-content card-body">
+								<h5>{{ estande.nome }}</h5>
+								<p>{{ estande.descricao }}</p>
+								<span style="font-size: 12px;">
+									{% if estande.nome_responsavel %}
+									<span style="color: #E91E63">Responsável:</span> {{ estande.nome_responsavel }}<br />
+									{% endif %}
+									{% if estande.local %}
+									<span style="color: #E91E63">Local:</span> {{ estande.local }}
+									{% endif %}
+								</span>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+		<!-- Services Section End -->
+
+		<!-- Map Section Start -->
+		<section id="google-map-area">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div id="conatiner-map"></div>
+						<script>
+							var geocoder;
+							var map;
+							var address ="{{ edicao.local }}";
+							function initialize() {
+							geocoder = new google.maps.Geocoder();
+							var latlng = new google.maps.LatLng(-34.397, 150.644);
+							var myOptions = {
+								zoom: 8,
+								center: latlng,
+								mapTypeControl: true,
+								mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+								navigationControl: true,
+								mapTypeId: google.maps.MapTypeId.ROADMAP
+							};
+							map = new google.maps.Map(document.getElementById("conatiner-map"), myOptions);
+							if (geocoder) {
+							  geocoder.geocode( { 'address': address}, function(results, status) {
+								if (status == google.maps.GeocoderStatus.OK) {
+								  if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+								  map.setCenter(results[0].geometry.location);
+
+									var infowindow = new google.maps.InfoWindow(
+										{ content: '<b>'+address+'</b>',
+										  size: new google.maps.Size(150,50)
+										});
+
+									var marker = new google.maps.Marker({
+										position: results[0].geometry.location,
+										map: map, 
+										title:address
+									}); 
+									google.maps.event.addListener(marker, 'click', function() {
+										infowindow.open(map,marker);
+									});
+
+								  } else {
+									alert("No results found");
+								  }
+								} else {
+								  alert("Geocode was not successful for the following reason: " + status);
+								}
+							  });
+							}
+							}
+						</script>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Map Section End -->
 
 		<!-- Noticias Section Start -->
 		<section id="noticias" class="section-padding">
@@ -385,7 +467,7 @@
 				{% for noticias in array_noticias %}
 					<div class="row">
 					{% for noticia in noticias %}
-						<div class="col-lg-4 col-md-6 col-xs-12">
+						<div class="col-lg-4 col-md-6 col-xs-12 wow fadeInDown" data-wow-delay="0.2s">
 							<div class="blog-item">
 								<div class="blog-image">
 									<a href="#">
@@ -398,8 +480,9 @@
 									<h3 class="title">
 										<a href="#">{{ noticia.titulo }}</a>
 									</h3>
+									<p>{{ noticia.texto }}</p>
 									<div class="meta-tags">
-										<span class="date" style="font-size: 12px">{{ noticia.usuario.first_name }}, {{ noticia.data_publicacao.date }}</span>
+										<span class="date" style="font-size: 12px">{{ noticia.data_publicacao.date }} por {{ noticia.admin.first_name }}</span>
 									</div>
 								</div>
 							</div>
@@ -412,219 +495,35 @@
 		<!-- About Section End -->
 
 		<!-- Galeria Section Start -->
-		<section id="galeria" class="section-padding">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="section-title-header text-center">
-							<h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">our event gallery</h1>
-							<p class="wow fadeInDown" data-wow-delay="0.2s">Global Grand Event on Digital Design</p>
-						</div>
-					</div> 
-				</div>
-				<div class="row">
-					<div class="col-md-6 col-sm-6 col-lg-4">
-						<div class="gallery-box">
-							<div class="img-thumb">
-								<img class="img-fluid" src="assets/img/gallery/img-1.jpg" alt="">
-							</div>
-							<div class="overlay-box text-center">
-								<a class="lightbox" href="assets/img/gallery/img-1.jpg">
-									<i class="lni-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="ccol-md-6 col-sm-6 col-lg-4">
-						<div class="gallery-box">
-							<div class="img-thumb">
-								<img class="img-fluid" src="assets/img/gallery/img-2.jpg" alt="">
-							</div>
-							<div class="overlay-box text-center">
-								<a class="lightbox" href="assets/img/gallery/img-2.jpg">
-									<i class="lni-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="ccol-md-6 col-sm-6 col-lg-4">
-						<div class="gallery-box">
-							<div class="img-thumb">
-								<img class="img-fluid" src="assets/img/gallery/img-3.jpg" alt="">
-							</div>
-							<div class="overlay-box text-center">
-								<a class="lightbox" href="assets/img/gallery/img-3.jpg">
-									<i class="lni-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="ccol-md-6 col-sm-6 col-lg-4">
-						<div class="gallery-box">
-							<div class="img-thumb">
-								<img class="img-fluid" src="assets/img/gallery/img-4.jpg" alt="">
-							</div>
-							<div class="overlay-box text-center">
-								<a class="lightbox" href="assets/img/gallery/img-4.jpg">
-									<i class="lni-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="ccol-md-6 col-sm-6 col-lg-4">
-						<div class="gallery-box">
-							<div class="img-thumb">
-								<img class="img-fluid" src="assets/img/gallery/img-5.jpg" alt="">
-							</div>
-							<div class="overlay-box text-center">
-								<a class="lightbox" href="assets/img/gallery/img-5.jpg">
-									<i class="lni-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="ccol-md-6 col-sm-6 col-lg-4">
-						<div class="gallery-box">
-							<div class="img-thumb">
-								<img class="img-fluid" src="assets/img/gallery/img-6.jpg" alt="">
-							</div>
-							<div class="overlay-box text-center">
-								<a class="lightbox" href="assets/img/gallery/img-6.jpg">
-									<i class="lni-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row justify-content-center mt-3">
-					<div class="col-xs-12">
-						<a href="#" class="btn btn-common">Browse All</a>
-					</div>
+	  <div id="galeria" class="carousel slide" data-ride="carousel">
+	  	<div class="row">
+			<div class="col-12">
+				<div class="section-title-header text-center">
+					<h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">Galeria de imagens</h1>
+					<p class="wow fadeInDown" data-wow-delay="0.2s">Veja o que ocorreu em outras edições do evento!</p>
 				</div>
 			</div>
-		</section>
-		<!-- Gallary Section End -->
-
-		<!-- Ask Question Section Start -->
-		<section id="faq" class="section-padding">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="section-title-header text-center">
-							<h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">Ask Question?</h1>
-							<p class="wow fadeInDown" data-wow-delay="0.2s">Global Grand Event on Digital Design</p>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
-						<div class="accordion">
-							<div class="card">
-								<div class="card-header" id="headingOne">
-									<div class="header-title" data-toggle="collapse" data-target="#questionOne" aria-expanded="true" aria-controls="collapseOne">
-										<i class="lni-pencil"></i> How to make a new event?
-									</div>
-								</div>
-								<div id="questionOne" class="collapse" aria-labelledby="headingOne" data-parent="#question">
-									<div class="card-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-header" id="headingTwo">
-										<div class="header-title" data-toggle="collapse" data-target="#questionTwo" aria-expanded="false" aria-controls="questionTwo">
-											<i class="lni-pencil"></i>  Which payment methods do you accept? 
-										</div>
-								</div>
-								<div id="questionTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#question">
-									<div class="card-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-header" id="headingThree">
-									<div class="header-title" data-toggle="collapse" data-target="#questionThree" aria-expanded="false" aria-controls="questionThree">
-										<i class="lni-pencil"></i>  Which document can i bring to meeting?   
-									</div>
-								</div>
-								<div id="questionThree" class="collapse" aria-labelledby="headingThree" data-parent="#question">
-									<div class="card-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-header" id="headingThree">
-									<div class="header-title" data-toggle="collapse" data-target="#questionFour" aria-expanded="false" aria-controls="questionFour">
-									 <i class="lni-pencil"></i> Who can join at the live event venue?
-									</div>
-								</div>
-								<div id="questionFour" class="collapse" aria-labelledby="headingThree" data-parent="#question">
-									<div class="card-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
-						<div class="accordion">
-							<div class="card">
-								<div class="card-header" id="headingOne2">
-									<div class="header-title" data-toggle="collapse" data-target="#questionOne2" aria-expanded="true" aria-controls="collapseOne">
-										<i class="lni-pencil"></i> How to make a new event?
-									</div>
-								</div>
-								<div id="questionOne2" class="collapse" aria-labelledby="headingOne" data-parent="#question">
-									<div class="card-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-header" id="headingTwo2">
-										<div class="header-title" data-toggle="collapse" data-target="#questionTwo2" aria-expanded="false" aria-controls="questionTwo">
-											<i class="lni-pencil"></i>  Which payment methods do you accept? 
-										</div>
-								</div>
-								<div id="questionTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#question">
-									<div class="card-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-header" id="headingThree">
-									<div class="header-title" data-toggle="collapse" data-target="#questionFive" aria-expanded="false" aria-controls="questionFive">
-										<i class="lni-pencil"></i>How to set price? 
-									</div>
-								</div>
-								<div id="questionFive" class="collapse" aria-labelledby="headingThree" data-parent="#question">
-									<div class="card-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-header" id="headingThree">
-									<div class="header-title" data-toggle="collapse" data-target="#questionSix" aria-expanded="false" aria-controls="questionSix">
-										<i class="lni-pencil"></i>  What our price list? 
-									</div>
-								</div>
-								<div id="questionSix" class="collapse" aria-labelledby="headingThree" data-parent="#question">
-									<div class="card-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+		</div>
+		<div class="carousel-inner">
+			{% for foto in fotos %}
+			<div class="carousel-item {% if foto == fotos.0 %}active{% endif %}">
+				<div class="d-block w-100" style="height: 550px; background-image: url({{ foto.imagem.url }}); background-size: cover; background-position: center"></div>
+				<div class="carousel-caption d-md-block">
+					<h3 class="fadeInUp wow" data-wow-delay=".3s">{{ foto.descricao }}</h3>
 				</div>
 			</div>
-		</section>
-		<!-- Ask Question Section End -->
+			{% endfor %}
+		</div>
+		<a class="carousel-control-prev" href="#galeria" role="button" data-slide="prev">
+		  <span class="carousel-control" aria-hidden="true"><i class="lni-chevron-left"></i></span>
+		  <span class="sr-only">Anterior</span>
+		</a>
+		<a class="carousel-control-next" href="#galeria" role="button" data-slide="next">
+		  <span class="carousel-control" aria-hidden="true"><i class="lni-chevron-right"></i></span>
+		  <span class="sr-only">Próximo</span>
+		</a>
+	  </div>
+	  <!-- Galeria Section End -->
 
 		<!-- Sponsors Section Start -->
 		<section id="patrocinio" class="section-padding">
@@ -632,163 +531,72 @@
 				<div class="row">
 					<div class="col-12">
 						<div class="section-title-header text-center">
-							<h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">Sponsores</h1>
-							<p class="wow fadeInDown" data-wow-delay="0.2s">Global Grand Event on Digital Design</p>
+							<h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">Patrocínio</h1>
+							<p class="wow fadeInDown" data-wow-delay="0.2s">Conheça nossos apoiadores e patrocinadores oficiais!</p>
 						</div>
 					</div>
 				</div>
 				<div class="row mb-30 text-center wow fadeInDown" data-wow-delay="0.3s">
+				{% for patrocinador in patrocinadores %}
 					<div class="col-md-3 col-sm-3 col-xs-12">
 						<div class="spnsors-logo">
-							<a href="#"><img class="img-fluid" src="assets/img/sponsors/logo-01.png" alt=""></a>
+							<a href="{% if patrocinador.site %} {{ patrocinador.site }} {% else %} # {% endif %}">
+								<img class="img-fluid" src="{{ patrocinador.imagem.url }}" style="max-height: 200px" alt="{{ patrocinador.nome }}">
+							</a>
 						</div>
 					</div>
-					<div class="col-md-3 col-sm-3 col-xs-12">
-						<div class="spnsors-logo">
-							<a href="#"><img class="img-fluid" src="assets/img/sponsors/logo-02.png" alt=""></a>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-3 col-xs-12">
-						<div class="spnsors-logo">
-							<a href="#"><img class="img-fluid" src="assets/img/sponsors/logo-03.png" alt=""></a>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-3 col-xs-12">
-						<div class="spnsors-logo">
-							<a href="#"><img class="img-fluid" src="assets/img/sponsors/logo-04.png" alt=""></a>
-						</div>
-					</div>
-					<div class="col-12 text-center">
-						<a href="#" class="btn btn-common">become a sponsor</a>
-					</div>
+				{% endfor %}
 				</div>
 			</div>
 		</section>
 		<!-- Sponsors Section End -->
 
 		<!-- Ticket Pricing Area Start -->
-		<section id="inscricao" class="section-padding">
+		<section id="inscricao" class="section-padding" style="background-image: url({% static 'assets/img/background/nao.jpg' %}); background-size: cover; background-position: top; background-attachment: fixed">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
-						<div class="section-title-header text-center">
-							<h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">Our Pricing</h1>
-							<p class="wow fadeInDown" data-wow-delay="0.2s">Global Grand Event on Digital Design</p>
+						<div class="section-title-header text-center" style="color: white">
+							<h1 class="section-title wow fadeInUp" data-wow-delay="0.2s"><div style="color: white">Inscrições</div></h1>
+							<p class="wow fadeInDown" data-wow-delay="0.2s">Não perca a chance de participar!</p>
 						</div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-lg-4 col-sm-6 col-xa-12 mb-3">
-						<div class="price-block-wrapper wow fadeInLeft" data-wow-delay="0.2s">
-							<div class="icon">
-								<i class="lni-write"></i>
+					{% for modalidade in modalidades %}
+					<div class="col-lg-4 col-sm-6 col-xa-12 mb-3" style="padding: 15px;">
+						<div class="card price-block-wrapper wow fadeInLeft" data-wow-delay="0.2s">
+							<div style="padding: 15px;">
+								<div class="colmun-title">
+									<h5>{{ modalidade.nome }}</h5>
+								</div>
+								<div class="price">
+									<h2>R${{ modalidade.preco }}</h2>
+									<p>{% if modalidade.limite %} {{ modalidade.limite }} ingressos disponíveis {% else %} Inscrições ilimitadas {% endif %}</p>
+								</div>
+								<div class="pricing-list">
+									<ul>
+										<li><i class="lni-{% if modalidade.atracoes %}check-mark-circle{% else %}close{% endif %}"></i><span class="text">&nbsp;Atrações</span></li>
+										<li><i class="lni-{% if modalidade.palestras %}check-mark-circle{% else %}close{% endif %}"></i><span class="text">&nbsp;Palestras</span></li>
+										<li><i class="lni-{% if modalidade.workshops %}check-mark-circle{% else %}close{% endif %}"></i><span class="text">&nbsp;Workshops</span></li>
+										<li><i class="lni-{% if modalidade.torneios %}check-mark-circle{% else %}close{% endif %}"></i><span class="text">&nbsp;Torneios</span></li>
+									</ul>
+								</div><br />
+								{% if agora > edicao.data_fim_inscricoes %}
+								<h3>Inscrições encerradas :(</h3>
+								{% elif agora < edicao.data_inicio_inscricoes %}
+								<h3>Inscrições {{ edicao.data_inicio_inscricoes.day }} de {{ edicao.data_inicio_inscricoes.month | date:'F' }}</h3>
+								{% else %}
+								<a href="#" class="btn btn-common">Inscrever-se</a>
+								{% endif %}
 							</div>
-							<div class="colmun-title">
-								<h5>Basic Pass</h5>
-							</div>
-							<div class="price">
-								<h2>$29</h2>
-								<p>452 Tickets Available</p>
-							</div>
-							<div class="pricing-list">
-								<ul>
-									<li><i class="lni-check-mark-circle"></i><span class="text">Entrance</span></li>
-									<li><i class="lni-check-mark-circle"></i><span class="text">Coffee Break</span></li>
-									<li><i class="lni-check-mark-circle"></i><span class="text">Lunch on all days</span></li>
-									<li><i class="lni-close"></i><span class="text">Access to all areas</span></li>
-									<li><i class="lni-close"></i><span class="text">Certificate</span></li>
-									<li><i class="lni-check-mark-circle"></i><span class="text">Workshop</span></li>
-								</ul>
-							</div>
-							<a href="#" class="btn btn-common">Buy Ticket</a>
 						</div>
 					</div>
-					<div class="col-lg-4 col-sm-6 col-xa-12 mb-3">
-						<div class="price-block-wrapper wow fadeInUp" data-wow-delay="0.3s">
-							<div class="icon">
-								<i class="lni-layers"></i>
-							</div>
-							<div class="colmun-title">
-								<h5>Standard Pass</h5>
-							</div>
-							<div class="price">
-								<h2>$40</h2>
-								<p>452 Tickets Available</p>
-							</div>
-							<div class="pricing-list">
-								<ul>
-									<li><i class="lni-check-mark-circle"></i><span class="text">Entrance</span></li>
-									<li><i class="lni-check-mark-circle"></i><span class="text">Coffee Break</span></li>
-									<li><i class="lni-check-mark-circle"></i><span class="text">Lunch on all days</span></li>
-									<li><i class="lni-close"></i><span class="text">Access to all areas</span></li>
-									<li><i class="lni-check-mark-circle"></i><span class="text">Certificate</span></li>
-									<li><i class="lni-close"></i><span class="text">Workshop</span></li>
-								</ul>
-							</div>
-							<a href="#" class="btn btn-common">Buy Ticket</a>
-						</div>
-					</div>
-					<div class="col-lg-4 col-sm-6 col-xa-12 mb-3">
-						<div class="price-block-wrapper wow fadeInRight" data-wow-delay="0.4s">
-							<div class="icon">
-								<i class="lni-leaf"></i>
-							</div>
-							<div class="colmun-title">
-								<h5>Premium Pass</h5>
-							</div>
-							<div class="price">
-								<h2>$68</h2>
-								<p>452 Tickets Available</p>
-							</div>
-							<div class="pricing-list">
-								<ul>
-									<li><i class="lni-check-mark-circle"></i><span class="text">Entrance</span></li>
-									<li><i class="lni-check-mark-circle"></i><span class="text">Coffee Break</span></li>
-									<li><i class="lni-close"></i><span class="text">Lunch on all days</span></li>
-									<li><i class="lni-check-mark-circle"></i><span class="text">Access to all areas</span></li>
-									<li><i class="lni-check-mark-circle"></i><span class="text">Certificate</span></li>
-									<li><i class="lni-close"></i><span class="text">Workshop</span></li>
-								</ul>
-							</div>
-							<a href="#" class="btn btn-common">Buy Ticket</a>
-						</div>
-					</div>
+					{% endfor %}
 				</div>
 			</div>
 		</section>
 		<!-- Ticket Pricing Area End -->
-
-		<!-- Subscribe Area Start -->
-		<div id="subscribe" class="section-padding">
-			<div class="container">
-				<div class="row justify-content-md-center">
-					<div class="col-md-10 col-lg-7">
-						<div class="subscribe-inner wow fadeInDown" data-wow-delay="0.3s">
-							<h2 class="subscribe-title">Sign Up For Our Newsletter</h2>
-							<form class="text-center form-inline">
-								<input class="mb-20 form-control" name="email" placeholder="Enter Your Email Here">
-								<button type="submit" class="btn btn-common sub-btn" data-style="zoom-in" data-spinner-size="30" name="submit" id="submit">
-								<span class="ladda-label"><i class="lni-check-box"></i> Submit</span>
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Subscribe Area End -->
-
-		<!-- Map Section Start -->
-		<section id="google-map-area">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-12">
-						<div id="conatiner-map"></div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- Map Section End -->
 
 		<!-- Contato Us Section -->
 		<section id="contato" class="section-padding">
@@ -847,7 +655,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="site-info">
-							<p>© AnimeGO! 2018 todos os direitos reservados<br />Designed by <a href="http://uideck.com" rel="nofollow">UIdeck</a></p>
+							<p>© AnimeGO! 2018 todos os direitos reservados<br />Template by <a href="http://uideck.com" rel="nofollow">UIdeck</a></p>
 						</div>      
 					</div>
 				</div>
