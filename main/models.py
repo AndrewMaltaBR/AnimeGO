@@ -9,6 +9,9 @@ class Edicao(models.Model):
 	data_inicio_incricoes = models.DateTimeField(default=timezone.now)
 	data_fim_incricoes = models.DateTimeField(default=timezone.now)
 
+	def __str__(self):
+		return 'Edição de ' + str(self.data_inicio)
+
 class Atracao(models.Model):
 	admin = models.ForeignKey('auth.user', on_delete=models.CASCADE)
 	edicao = models.ForeignKey('Edicao', on_delete=models.CASCADE)
@@ -20,6 +23,9 @@ class Atracao(models.Model):
 	data_inicio = models.DateTimeField(default=timezone.now)
 	data_fim = models.DateTimeField(default=timezone.now)
 
+	def __str__(self):
+		return self.titulo
+
 class Estande(models.Model):
 	admin = models.ForeignKey('auth.user', on_delete=models.CASCADE)
 	edicao = models.ForeignKey('Edicao', on_delete=models.CASCADE)
@@ -28,6 +34,9 @@ class Estande(models.Model):
 	imagem = models.ImageField(null=True, blank=True)
 	nome_responsavel = models.CharField(max_length=120, blank=True, null=True)
 	local = models.CharField(max_length=120, blank=True, null=True)
+
+	def __str__(self):
+		return self.nome
 
 class Modalidade(models.Model):
 	admin = models.ForeignKey('auth.user', on_delete=models.CASCADE)
@@ -40,14 +49,20 @@ class Modalidade(models.Model):
 	workshops = models.BooleanField()
 	torneios = models.BooleanField()
 
+	def __str__(self):
+		return self.nome
+
 class Visitante(models.Model):
 	nome_completo = models.CharField(max_length=120)
 	email = models.CharField(max_length=60)
 	cpf = models.CharField(max_length=14)
 
+	def __str__(self):
+		return self.nome_completo
+
 class Inscricao(models.Model):
 	modalidade = models.ForeignKey('Modalidade', on_delete=models.CASCADE)
-	visitante = models.ForeignKey('Visitante', on_delete=models.CASCADE)	
+	visitante = models.ForeignKey('Visitante', on_delete=models.CASCADE)
 
 class Noticia(models.Model):
 	admin = models.ForeignKey('auth.user', on_delete=models.CASCADE)
@@ -56,13 +71,22 @@ class Noticia(models.Model):
 	imagem = models.ImageField(null=True, blank=True)
 	data_publicacao = models.DateTimeField(default=timezone.now)
 
+	def __str__(self):
+		return self.titulo
+
 class Foto(models.Model):
 	admin = models.ForeignKey('auth.user', on_delete=models.CASCADE)
 	imagem = models.ImageField(null=True, blank=True)
 	descricao = models.TextField()
+
+	def __str__(self):
+		return self.descricao
 
 class Patrocinador(models.Model):
 	admin = models.ForeignKey('auth.user', on_delete=models.CASCADE)
 	nome = models.CharField(max_length=60)
 	imagem = models.ImageField(null=True, blank=True)
 	site = models.URLField(max_length=120, null=True, blank=True)
+
+	def __str__(self):
+		return self.nome
